@@ -2,10 +2,12 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
+mongoose.Promise = global.Promise
+
 const routerTasks = require('./routes/tasks')
 const routerTask = require('./routes/task')
 
-mongoose.Promise = global.Promise
+
 
 const PORT = 3000
 const app = express()
