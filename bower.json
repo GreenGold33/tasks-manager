@@ -1,0 +1,20 @@
+{
+  "name": "tasks-manager",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "JuanMa Garrido <JuanMa.Garrido@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/SkylabCoders/tasks-manager",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

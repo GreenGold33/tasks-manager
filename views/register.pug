@@ -1,0 +1,26 @@
+extends layout
+
+block content
+
+  .form-box.col-md-6.col-md-offset-3
+    .form-top
+      .form-top-left
+        h2 Register
+        p Fill in the form below to get instant access:
+      .form-top-right
+        i.fa.fa-pencil
+    .form-bottom
+      form.registration-form(role='form', action='/register', method='post')
+        .form-group
+          label(for='form-first-name') Username
+          |
+          input#form-first-name.form-first-name.form-control(type='text', name='username', placeholder='First name...')
+        .form-group
+          label(for='form-last-name') Password
+          |
+          input#form-last-name.form-last-name.form-control(type='text', name='password', placeholder='Last name...')
+        .form-group
+          label(for='form-email') Email
+          |
+          input#form-email.form-email.form-control(type='text', name='email', placeholder='Email...')
+        button.btn.btn-primary(type='submit') Sign me up!
