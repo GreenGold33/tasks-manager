@@ -27,11 +27,9 @@ router.use( session({
 router.use(passport.initialize());
 router.use(passport.session());
 
-passport.use( new LocalStrategy(Account.authenticate()) );
-
+passport.use( new LocalStrategy( Account.authenticate() ) );
 passport.serializeUser( Account.serializeUser() )
 passport.deserializeUser( Account.deserializeUser() )
-
 
 router.get('/', showHome)
 router.get('/register', showRegister);

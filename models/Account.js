@@ -4,6 +4,6 @@ const passportLocalMongoose = require('passport-local-mongoose')
 
 const Account = new Schema({});
 
-Account.plugin(passportLocalMongoose);
+Account.plugin( passportLocalMongoose );
 
 module.exports = mongoose.model('Account', Account);
