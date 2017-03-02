@@ -2,178 +2,25 @@ extends layout
 
 block content
   div
-
     .row-fluid
-      .col-xs-12.col-sm-6.col-md-4.col-lg-3.cardcol(ng-repeat='(key, item) in cards')
+      .col-sm-6.col-md-4.col-lg-3.cardcol
         .panel.panel-primary
           .panel-heading
-            span.glyphicon.glyphicon-trash(ng-click='cards.$remove(key)')
-            span.glyphicon.glyphicon-pencil(data-toggle='modal', data-target='#cardEditor{{$id}}')
-            h3.panel-title {{item.panelTitle}}
+            h3.panel-title TO-DO
           .panel-body
-            p.prewrap(ng-if='(item.panelDescription)') {{item.panelDescription}}
             ul.list-group
-              li.list-group-item(ng-repeat='content in item.panelContent')
+              li.list-group-item
                 span.glyphicon.glyphicon-trash.right(ng-click='delNote(item, content);')
                 span.glyphicon.glyphicon-pencil.right(data-toggle='modal', data-target='#noteEditor{{$id}}')
-                h4 {{content.title}}
-                p.prewrap(ng-if='(content.text)') {{content.text}}
+                h4 Buy Milk
+                p.prewrap ... and cookies, chocolate & honey
                 p.notefooter
                   small
                     | created:
-                    b {{content.author}}
-                    | , {{content.madeDate}}
-                .modal(id='noteEditor{{$id}}')
-                  .modal-dialog
-                    .modal-content
-                      .modal-header
-                        button.close(data-dismiss='modal')
-                          span.glyphicon.glyphicon-remove
-                        h4.modal-title Note editor
-                      .modal-body
-                        form
-                          .form-group
-                            p(ng-if='!(userName)')
-                              small
-                                | Who are you? Do you want to remain a randomTroll?
-                                br
-                                | If not, better tell us your name now!
-                            span.glyphicon.glyphicon-pushpin
-                            |
-                            label(for='cardTitle') Note title:
-                            |
-                            input.form-control.input-lg(type='text', ng-model='content.title', placeholder='title for your note..', name='cardTitle')
-                            span.glyphicon.glyphicon-comment
-                            |
-                            label(for='cardDescription') Note text:
-                            |
-                            textarea.form-control.input-lg(type='text', ng-model='content.text', placeholder='the content of the note', name='cardDescription')
-                            p.right
-                              small
-                                | Note: You can manually set the area by grabbing this edge
-                                span.glyphicon.glyphicon-arrow-up
-                      .modal-footer
-                        button.btn.btn-success(data-dismiss='modal', ng-click='saveIt(item);')
-                          span.glyphicon.glyphicon-ok
-                          |  done editing
+                    b @juanmaguitar
+                    | , 12/01/2017
               li.list-group-item.list-group-item-info
                 button#newCard.btn.btn-primary.newnotebtn(ng-click="newNoteTitle=''; newNoteContent='';", data-toggle='modal', data-target='#elementAdder{{$id}}')
                   span.glyphicon.glyphicon-pushpin
                   |  new note
-          .panel-footer
-            small
-              | created:
-              b {{item.panelMadeBy}}
-              | , {{item.panelMadeDate}}
-          .modal(id='cardEditor{{$id}}')
-            .modal-dialog
-              .modal-content
-                .modal-header
-                  button.close(data-dismiss='modal')
-                    span.glyphicon.glyphicon-remove
-                  h4.modal-title Card editor
-                .modal-body
-                  p
-                    | Careful with that del / backspace!
-                    br
-                    | You are editing the card:
-                    b
-                      i {{item.panelTitle}}
-                    |  in
-                    b real time
-                    | !
-                  form
-                    .form-group
-                      p(ng-if='!(userName)')
-                        small
-                          | Who are you? Do you want to remain a randomTroll?
-                          br
-                          | If not, better tell us your name now!
-                      span.glyphicon.glyphicon-file
-                      |
-                      label(for='cardTitle') Card title:
-                      |
-                      input.form-control.input-lg(type='text', ng-model='item.panelTitle', ng-change='cards.$save(item)', placeholder='card title', name='cardTitle')
-                      span.glyphicon.glyphicon-info-sign
-                      |
-                      label(for='cardDescription') Card description:
-                      textarea.form-control.input-lg(type='text', ng-model='item.panelDescription', ng-change='cards.$save(item)', placeholder='card description', name='cardDescription')
-                      p.right
-                        small
-                          | Note: You can manually set the area by grabbing this edge
-                          span.glyphicon.glyphicon-arrow-up
-                .modal-footer
-                  button.btn.btn-success(data-dismiss='modal')
-                    span.glyphicon.glyphicon-ok
-                    |  done editing
-          .modal(id='elementAdder{{$id}}')
-            .modal-dialog
-              .modal-content
-                .modal-header
-                  button.close(data-dismiss='modal')
-                    span.glyphicon.glyphicon-remove
-                  h4.modal-title Note creator
-                .modal-body
-                  form
-                    .form-group
-                      p(ng-if='!(userName)')
-                        small
-                          | Who are you? Do you want to remain a randomTroll?
-                          br
-                          | If not, better tell us your name now!
-                      span.glyphicon.glyphicon-pushpin
-                      |
-                      label(for='cardTitle') Note title:
-                      |
-                      input.form-control.input-lg(type='text', ng-model='newNoteTitle', ng-init="newNoteTitle=''", placeholder='title for your note..', name='cardTitle')
-                      span.glyphicon.glyphicon-comment
-                      |
-                      label(for='cardDescription') Note text:
-                      |
-                      textarea.form-control.input-lg(type='text', ng-model='newNoteContent', ng-init="newNoteContent=''", placeholder='the content of the note', name='cardDescription')
-                      p.right
-                        small
-                          | Note: You can manually set the area by grabbing this edge
-                          span.glyphicon.glyphicon-arrow-up
-                .modal-footer
-                  button.btn.btn-success(ng-click='addNote(item, newNoteTitle, newNoteContent)', data-dismiss='modal')
-                    span.glyphicon.glyphicon-ok
-                    |  share note
-      .col-xs-12.col-sm-6.col-md-4.col-lg-3.cardcol
-        button#newCard.btn.btn-success(ng-click='buttonClick()', data-toggle='modal', data-target='#cardCreator')
-          h4
-            span.glyphicon.glyphicon-plus
-            |  add new card
-    #cardCreator.modal
-      .modal-dialog
-        .modal-content
-          .modal-header
-            button.close(data-dismiss='modal')
-              span.glyphicon.glyphicon-remove
-            h4.modal-title Creating new Card
-          .modal-body
-            p You can make your card here
-            form
-              .form-group
-                p(ng-if='!(userName)')
-                  small
-                    | Who are you? Do you want to remain a randomTroll?
-                    br
-                    | If not, better tell us your name now!
-                span.glyphicon.glyphicon-file
-                |
-                label(for='cardTitle') Card title:
-                |
-                input.form-control.input-lg(type='text', placeholder='The title...', ng-model='newCardTitle', ng-init="newCardTitle=''", name='cardTitle')
-                span.glyphicon.glyphicon-info-sign
-                |
-                label(for='cardDescription') Card description:
-                textarea.form-control.input-lg(type='text', placeholder='and some description too...', ng-model='newCardDescription', name='cardDescription')
-                p.right
-                  small
-                    | Note: You can manually set the area by grabbing this edge
-                    span.glyphicon.glyphicon-arrow-up
-          .modal-footer
-            button.btn.btn-success(ng-click='addCard(newCardTitle, newCardDescription, userName)', data-dismiss='modal')
-              span.glyphicon.glyphicon-ok
-              |  share card
+                button.btn.btn-primary.btn-lg(type='button', data-toggle='modal', data-target='#myModal')  Launch demo modal

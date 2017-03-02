@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+  div
+    .row-fluid
+      .col-sm-6.col-md-4.col-lg-3.cardcol
+        .panel.panel-primary
+          .panel-heading.todo
+            h3.panel-title TO-DO
+            button#newCard.btn.btn-primary.newnotebtn(type='button', data-toggle='modal', data-target='#myModal')
+              span.glyphicon.glyphicon-pushpin
+              |  new note
+          .panel-body
+            ul.list-group
+              each task in tasks
+                li.list-group-item.task-item
+                  span.glyphicon.glyphicon-trash.right.remove
+                  span.glyphicon.glyphicon-pencil.right.edit(type='button', data-toggle='modal', data-target='#myModal')
+                  h4.title= task.title
+                  p.prewrap.description= task.description
+                  input(type='hidden',value=task._id)
+                  p.notefooter
+                    small created on #{task.createdAt}
+
+            include modalForm.pug

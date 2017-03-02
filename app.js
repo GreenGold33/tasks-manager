@@ -21,8 +21,8 @@ const urlDB = 'mongodb://localhost:27017/test'
 mongoose.connect(urlDB)
 
 app.use('/', routerAuth)
-app.use('/tasks', isLoggedIn, routerTasks)
-app.use('/task', isLoggedIn, routerTask)
+app.use('/tasks', routerTasks)
+app.use('/task', routerTask)
 
 
 function isLoggedIn(req, res, next) {

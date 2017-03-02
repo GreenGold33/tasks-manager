@@ -3,6 +3,20 @@ html, body {
   min-height: 100%;
 }
 
+.panel-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#newCard {
+  margin-left: auto;
+}
+
+.task-item {
+  margin:10px 0;
+}
+
 header {
   background-color: #1F496E;
 }
@@ -40,6 +54,10 @@ header .container-fluid ul.navbar-right li a:hover {
 header > div {
   display:flex;
   justify-content:space-between;
+}
+
+.edit, .remove, .close {
+  cursor: pointer !important;
 }
 
 h1 {
