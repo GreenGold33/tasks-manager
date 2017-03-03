@@ -1,25 +1,31 @@
 extends ../layout
 
 block content
+  -
+    var panels = [ "TO-DO", "In progress...", "DONE", "Rejected" ]
+
   div
     .row-fluid
-      .col-sm-6.col-md-4.col-lg-3.cardcol
-        .panel.panel-primary
-          .panel-heading.todo
-            h3.panel-title TO-DO
-            button#newCard.btn.btn-primary.newnotebtn(type='button', data-toggle='modal', data-target='#myModal')
-              span.glyphicon.glyphicon-pushpin
-              |  new note
-          .panel-body
-            ul.list-group
-              each task in tasks
-                li.list-group-item.task-item
-                  span.glyphicon.glyphicon-trash.right.remove
-                  span.glyphicon.glyphicon-pencil.right.edit(type='button', data-toggle='modal', data-target='#myModal')
-                  h4.title= task.title
-                  p.prewrap.description= task.description
-                  input(type='hidden',value=task._id)
-                  p.notefooter
-                    small created on #{task.createdAt}
+      each panel, index in panels
+        .col-sm-6.col-md-4.col-lg-3.cardcol
+          .panel.panel-primary
+            .panel-heading.todo
+              h3.panel-title= panel
+              if panel === "TO-DO"
+                button#newCard.btn.btn-primary.newnotebtn(type='button', data-toggle='modal', data-target='#myModal')
+                  span.glyphicon.glyphicon-pushpin
+                  |  new note
+            .panel-body
+              ul.list-group
+                each task in tasks
+                  if (task.userId === user._id.toString()) && (task.status === index)
+                    li.list-group-item.task-item
+                      span.glyphicon.glyphicon-trash.right.remove
+                      span.glyphicon.glyphicon-pencil.right.edit(type='button', data-toggle='modal', data-target='#myModal')
+                      h4.title= task.title
+                      p.prewrap.description= task.description
+                      input(type='hidden', name='idTask', value=task._id)
+                      p.notefooter
+                        small created on #{ moment(task.createdAt).fromNow() }
 
-            include modalForm.pug
+      include modalForm.pug

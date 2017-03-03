@@ -1,29 +1,39 @@
 #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
   .modal-dialog
-    form.edit-add-task(action="/tasks", method="POST")
-      .modal-content
-        .modal-header
-          button.close(data-dismiss='modal')
-            span.glyphicon.glyphicon-remove.close
-          h4.modal-title New Note
-        .modal-body
-            .form-group
-              span.glyphicon.glyphicon-pushpin
-              |
-              label(for='cardTitle') &nbsp;Note title:
-              |
-              input.form-control.input-lg(type='text', placeholder='title for your note..', name='title')
-              br
-              span.glyphicon.glyphicon-comment
-              |
-              label(for='cardDescription') &nbsp;Note description:
-              |
-              textarea.form-control.input-lg(type='text', placeholder='the content of the note', name='description')
-              p.right
-                small
-                  | Note: You can manually set the area by grabbing this edge
-                  span.glyphicon.glyphicon-arrow-up
-        .modal-footer
-          button.btn.btn-success(type='submit')
-            span.glyphicon.glyphicon-ok
-            |  SAVE
+    .edit-add-task
+      form(action="/tasks", method="POST")
+        .modal-content
+          .modal-header
+            button.close(data-dismiss='modal')
+              span.glyphicon.glyphicon-remove.close
+            h4.modal-title New Note
+          .modal-body
+              .form-group
+                span.glyphicon.glyphicon-pushpin
+                |
+                label &nbsp;Note title:
+                |
+                input.form-control.input-lg(type='text', placeholder='title for your note..', name='title')
+                br
+                span.glyphicon.glyphicon-comment
+                |
+                label &nbsp;Note description:
+                |
+                textarea.form-control.input-lg(type='text', placeholder='the content of the note', name='description')
+                p.right
+                  small
+                    | Note: You can manually set the area by grabbing this edge
+                    span.glyphicon.glyphicon-arrow-up
+                br
+                span.glyphicon.glyphicon-list-alt
+                |
+                label &nbsp;Status:
+                |
+                select.form-control(name='status')
+                  each panel, key in panels
+                    option(value=key)= panel
+                input(type='hidden', name='userId', value=user._id)
+          .modal-footer
+            button.btn.btn-success(type='submit')
+              span.glyphicon.glyphicon-ok
+              |  SAVE

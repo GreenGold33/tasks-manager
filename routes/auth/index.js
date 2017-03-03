@@ -7,7 +7,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 
-const showHome = require('./handlers/showHome')
+// const showHome = require('./handlers/showHome')
 const showRegister = require('./handlers/showRegister')
 const showLogin = require('./handlers/showLogin')
 const register = require('./handlers/register')
@@ -31,7 +31,7 @@ passport.use( new LocalStrategy( Account.authenticate() ) );
 passport.serializeUser( Account.serializeUser() )
 passport.deserializeUser( Account.deserializeUser() )
 
-router.get('/', showHome)
+router.get('/', (req, res) => res.redirect('/tasks') )
 router.get('/register', showRegister);
 router.post('/register', register);
 router.get('/login', showLogin);

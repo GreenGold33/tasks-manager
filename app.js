@@ -11,6 +11,8 @@ const routerAuth = require('./routes/auth')
 const PORT = 3000
 const app = express()
 
+app.locals.moment = require('moment');
+
 app.use( bodyParser.urlencoded({ extended: false }) )
 app.use( bodyParser.json() )
 
@@ -23,12 +25,6 @@ mongoose.connect(urlDB)
 app.use('/', routerAuth)
 app.use('/tasks', routerTasks)
 app.use('/task', routerTask)
-
-
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) return next();
-    res.redirect('/login');
-}
 
 app.listen(PORT, () =>
   console.log(`💼 Tasks Server running at PORT ${PORT}...`))

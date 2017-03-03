@@ -1,1 +1,1 @@
-module.exports = (req, res) => res.redirect('/')
+module.exports = (req, res) => res.redirect('/tasks')
