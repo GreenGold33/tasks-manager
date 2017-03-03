@@ -8,7 +8,7 @@ const routerTasks = require('./routes/tasks')
 const routerTask = require('./routes/task')
 const routerAuth = require('./routes/auth')
 
-const PORT = process.env.DB_URI || 3000
+const PORT = process.env.PORT || 3000
 const urlDB = process.env.DB_URI || 'mongodb://localhost:27017/test'
 const app = express()
 
