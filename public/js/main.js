@@ -2,19 +2,12 @@
 
   $('.edit').on('click', function(e) {
 
-    const $parentContainer = $(this).closest('li')
-    const titleTask = $parentContainer.find('.title').text()
-    const decriptionTask = $parentContainer.find('.description').text()
-    const idTask = $parentContainer.find('input[type="hidden"]').val()
+    const idTask = $(this).closest('li').data('id')
+    const url = `/task/${idTask}`
 
-    const $form = $('.edit-add-task form')
-
-    $('h4.modal-title').text('Edit Note')
-    $form.addClass("edit")
-      .attr('action',`/task/${idTask}`)
-      .find('input[name="title"]').val(titleTask)
-        .end()
-    .find('textarea[name="description"]').val(decriptionTask)
+    $.ajax({ url })
+      .then(fillEditFormData)
+      .catch( () => alert("There was an error retrieving info from the task!") )
 
   })
 
@@ -22,11 +15,13 @@
 
     const $parentContainer = $(this).closest('li')
     const idTask = $parentContainer.find('input[name="idTask"]').val()
-    $.ajax({
-      url: `/task/${idTask}`,
-      method: 'DELETE'
-    })
-    .done( () => window.location.reload() )
+
+    const url = `/task/${idTask}`
+    const method = 'DELETE'
+
+    $.ajax({ url,  method })
+      .then( () => $parentContainer.remove() )
+      .catch( () => alert("There was an error removing the task!") )
 
   })
 
@@ -34,12 +29,13 @@
 
     const $form = $('.edit-add-task form')
 
+    // Clean Form to default 'POST'
     $('h4.modal-title').text('New Note')
     $form.removeClass()
       .attr('action','/tasks')
       .find('input[name="title"]').val('')
         .end()
-    .find('textarea[name="description"]').val('')
+      .find('textarea[name="description"]').val('')
 
   })
 
@@ -50,9 +46,13 @@
       const url = this.action
       let data = `title=${this.title.value}`
       data += `&description=${this.description.value}`
-      data += `&status=${this.status.value}`
 
-      updateDataServer(data, url)
+      const method = "PUT"
+
+      $.ajax({ url, method, data })
+        .done( () => {
+          window.location = '/tasks'
+        })
 
     }
 
@@ -61,8 +61,6 @@
   const $containers = $('.tasks-panel ul')
   const containers = Array.from( $containers );
   const revertOnSpill = true;
-
-  adjustRows()
 
   dragula({ containers, revertOnSpill })
     .on('drop', function(el, target, source, sibling) {
@@ -73,25 +71,17 @@
       }
       tasksData = tasksData.concat( getTasksStatus(source) )
 
-    $.ajax({
-        url: '/tasks',
-        method: "PUT",
-        dataType: "json",
-        contentType: 'application/json',
-        data: JSON.stringify(tasksData)
-      })
-      .done( ( response  ) => {
-        console.log(response);
-        //window.location = '/tasks'
-      })
+      $.ajax({
+          url: '/tasks',
+          method: "PUT",
+          dataType: "json",
+          contentType: 'application/json',
+          data: JSON.stringify(tasksData)
+        })
+        .done( ( response  ) => {
+          adjustRows()
+        })
 
-      //console.log(tasksData);
-      const newStatus = $(target).data('status')
-      const idTask = $(el).data('id')
-      const data = `status=${newStatus}`
-      const url = `/task/${idTask}`
-      // updateDataServer(data, url)
-      // adjustRows($containers)
     });
 
   function adjustRows() {
@@ -116,14 +106,14 @@
   }
 
 
-  function updateDataServer( data, url ) {
-    const method = "PUT"
-    $.ajax({ url, method, data })
-      .done( () => {
-        window.location = '/tasks'
-      })
+  function fillEditFormData( task ) {
+    const $form = $('.edit-add-task form')
+    $('h4.modal-title').text('Edit Note')
+    $form.addClass("edit")
+        .attr('action',`/task/${task._id}`)
+        .find('input[name="title"]').val(task.title)
+          .end()
+        .find('textarea[name="description"]').val(task.title)
   }
-
-  //alert("new loading....")
 
 })()

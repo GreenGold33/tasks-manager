@@ -15,7 +15,6 @@ module.exports = (req,res) => {
 
   Promise.all( promiseUpdateTasks )
     .then( () => {
-      console.log(arguments)
       return Task.find()
     })
     .then( tasks => {

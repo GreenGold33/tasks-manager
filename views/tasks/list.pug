@@ -17,14 +17,15 @@ block content
                   |  new note
             .panel-body
               ul.list-group(data-status=index)
-                each task in tasks
-                  if (task.userId === user._id.toString()) && (task.status.category === index)
+                if !tasks[index]
+                  li.list-group-item.dummy
+                else
+                  each task in tasks[index]
                     li.list-group-item.task-item(data-id=task._id)
                       span.glyphicon.glyphicon-trash.right.remove
                       span.glyphicon.glyphicon-pencil.right.edit(type='button', data-toggle='modal', data-target='#myModal')
                       h4.title= task.title
                       p.prewrap.description= task.description
                       input(type='hidden', name='idTask', value=task._id)
-                      p.notefooter
-                        small created on #{ moment(task.createdAt).fromNow() }
+
       include modalForm.pug
