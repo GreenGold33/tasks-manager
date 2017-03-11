@@ -9,6 +9,8 @@ module.exports = (req,res) => {
   task.save()
     .then( () => Task.find() )
     .then( tasks => {
+      console.log(tasks)
+      console.log(user)
       res.render('tasks/list', { tasks, user })
     })
     .catch( err => { throw err })
