@@ -1,5 +1,6 @@
 const Task = require('../../../models/Task')
 const _ = require('lodash')
+const organizeTasks = require('_organizeTasks')
 
 module.exports = (req,res) => {
 
@@ -7,15 +8,7 @@ module.exports = (req,res) => {
 
   Task.find()
     .then( dbTasks => {
-      console.log("step1...")
-      const userTasks = dbTasks.filter( task => task.userId === user.id )
-      console.log("step2...")
-      const orderedTasks = _.orderBy(userTasks, task => {
-        return [ task.status.category, task.status.order ]
-      }, ['asc', 'asc']);
-      console.log("step3...")
-      const tasks = _.groupBy(orderedTasks, 'status.category');
-      console.log(tasks)
+      const tasks = organizeTasks(dbTasks, user)
       res.render('tasks/list', { tasks, user })
     })
     .catch( err => { throw err } )

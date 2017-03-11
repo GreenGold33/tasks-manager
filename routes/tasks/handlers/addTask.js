@@ -1,4 +1,5 @@
 const Task = require('../../../models/Task')
+const organizeTasks = require('_organizeTasks')
 
 module.exports = (req,res) => {
 
@@ -8,9 +9,8 @@ module.exports = (req,res) => {
 
   task.save()
     .then( () => Task.find() )
-    .then( tasks => {
-      console.log(tasks)
-      console.log(user)
+    .then( dbTasks => {
+      const tasks = organizeTasks(dbTasks, user)
       res.render('tasks/list', { tasks, user })
     })
     .catch( err => { throw err })
