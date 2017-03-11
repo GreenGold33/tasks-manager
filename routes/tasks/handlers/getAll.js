@@ -1,4 +1,3 @@
-const _ = require('lodash')
 const Task = require('../../../models/Task')
 const organizeTasks = require('./_organizeTasks')
 
