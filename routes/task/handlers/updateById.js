@@ -5,10 +5,16 @@ module.exports = (req,res) => {
   const { id } = req.params
 
   let { title, description, status } = req.body
-  const updatedAt = Date.now()
-  status = +status
 
-  Task.findByIdAndUpdate( id,  { title, description, status, updatedAt } )
+  let updateData = {
+    updatedAt: Date.now()
+  }
+  if (title) updateData.title = title
+  if (description) updateData.description = description
+  if (status) updateData.status = +status
+
+  console.log(updateData)
+  Task.findByIdAndUpdate( id,  updateData )
     .then( task => {
       console.log('task has been updated succesfully')
       res.status(200).json(task)

@@ -48,19 +48,82 @@
     if ( $(this).hasClass('edit') ) {
       e.preventDefault()
       const url = this.action
-      const method = "PUT"
       let data = `title=${this.title.value}`
       data += `&description=${this.description.value}`
       data += `&status=${this.status.value}`
 
-      $.ajax({ url, method, data })
-        .done( () => {
-          debugger;
-          window.location = '/tasks'
+      updateDataServer(data, url)
 
-        })
     }
 
   })
+
+  const $containers = $('.tasks-panel ul')
+  const containers = Array.from( $containers );
+  const revertOnSpill = true;
+
+  adjustRows()
+
+  dragula({ containers, revertOnSpill })
+    .on('drop', function(el, target, source, sibling) {
+
+      let tasksData = [];
+      if ( source !== target ) {
+         tasksData = tasksData.concat( getTasksStatus(target) )
+      }
+      tasksData = tasksData.concat( getTasksStatus(source) )
+
+    $.ajax({
+        url: '/tasks',
+        method: "PUT",
+        dataType: "json",
+        contentType: 'application/json',
+        data: JSON.stringify(tasksData)
+      })
+      .done( ( response  ) => {
+        console.log(response);
+        //window.location = '/tasks'
+      })
+
+      //console.log(tasksData);
+      const newStatus = $(target).data('status')
+      const idTask = $(el).data('id')
+      const data = `status=${newStatus}`
+      const url = `/task/${idTask}`
+      // updateDataServer(data, url)
+      // adjustRows($containers)
+    });
+
+  function adjustRows() {
+    $containers.each( (i,container) => {
+      if( $(container).find("li").length === 0 ) {
+        $(container).append('<li class="list-group-item dummy"></li>')
+      }
+      if( $(container).find("li").length >= 2 ) {
+        $(container).find(".dummy").remove()
+      }
+    })
+  }
+
+  function getTasksStatus( container ) {
+    const status = $(container).data('status')
+    return Array.from( container.getElementsByTagName('li') ).reduce( (acc, item) => {
+      const id = $(item).data('id')
+      const order = $(container).children().index(item)
+      acc.push({ id, order, status })
+      return acc;
+    }, [])
+  }
+
+
+  function updateDataServer( data, url ) {
+    const method = "PUT"
+    $.ajax({ url, method, data })
+      .done( () => {
+        window.location = '/tasks'
+      })
+  }
+
+  //alert("new loading....")
 
 })()

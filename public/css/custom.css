@@ -124,9 +124,9 @@ h1 small {
   text-align: right;
 }
 
-li:hover .notefooter {
-  display: block;
-}
+// li:hover .notefooter {
+//   display: block;
+// }
 
 #newcard {
   margin-top: 0px;
@@ -158,5 +158,13 @@ li:hover .notefooter {
 
 .navbar-form, h1 {
   margin-top: 15px;
+}
+
+li.dummy {
+  border:1px solid #FFF !important;
+}
+
+.tasks-panel .panel-primary {
+  min-height: 100%
 }
 

@@ -7,19 +7,19 @@ block content
   div
     .row-fluid
       each panel, index in panels
-        .col-sm-6.col-md-4.col-lg-3.cardcol
+        .col-sm-6.col-md-4.col-lg-3.cardcol.tasks-panel
           .panel.panel-primary
-            .panel-heading.todo
+            .panel-heading
               h3.panel-title= panel
               if panel === "TO-DO"
                 button#newCard.btn.btn-primary.newnotebtn(type='button', data-toggle='modal', data-target='#myModal')
                   span.glyphicon.glyphicon-pushpin
                   |  new note
             .panel-body
-              ul.list-group
+              ul.list-group(data-status=index)
                 each task in tasks
-                  if (task.userId === user._id.toString()) && (task.status === index)
-                    li.list-group-item.task-item
+                  if (task.userId === user._id.toString()) && (task.status.category === index)
+                    li.list-group-item.task-item(data-id=task._id)
                       span.glyphicon.glyphicon-trash.right.remove
                       span.glyphicon.glyphicon-pencil.right.edit(type='button', data-toggle='modal', data-target='#myModal')
                       h4.title= task.title
@@ -27,5 +27,4 @@ block content
                       input(type='hidden', name='idTask', value=task._id)
                       p.notefooter
                         small created on #{ moment(task.createdAt).fromNow() }
-
       include modalForm.pug
