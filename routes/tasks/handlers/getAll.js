@@ -1,6 +1,6 @@
-const Task = require('../../../models/Task')
 const _ = require('lodash')
-const organizeTasks = require('_organizeTasks')
+const Task = require('../../../models/Task')
+const organizeTasks = require('./_organizeTasks')
 
 module.exports = (req,res) => {
 
