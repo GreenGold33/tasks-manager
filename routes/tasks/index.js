@@ -12,6 +12,7 @@ router.put('/', updateTasks)
 module.exports = router
 
 function isLoggedIn(req, res, next) {
+    debugger;
     if (req.isAuthenticated()) return next();
     res.redirect('/login');
 }

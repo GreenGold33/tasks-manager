@@ -1,1 +1,3 @@
-module.exports = (req, res) => res.redirect('/tasks')
+module.exports = (req, res) => {
+  res.redirect('/tasks')
+}

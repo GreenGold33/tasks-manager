@@ -1,23 +1,36 @@
 extends ../layout
 
 block content
-
-  .form-box.col-md-6.col-md-offset-3
-    .form-top
-      .form-top-left
-        h2 Log In
-        p Enter username and password to log on:
-      .form-top-right
-        i.fa.fa-key
-    .form-bottom
-      form.login-form(role='form', action='/login', method='post')
-        .form-group
-          label(for='form-username') Username
+  .container
+    .row#login
+      .main.col-md-6.col-md-offset-3
+        h3
+          | Please Log In, or&nbsp;
+          a(href='#') Sign Up
+        .row
+          .col-xs-4
+            a.btn.btn-lg.btn-primary.btn-facebook.btn-block(href='#') Facebook
+          .col-xs-4
+            a.btn.btn-lg.btn-primary.btn-twitter.btn-block.google(href='/auth/twitter') Twitter
+          .col-xs-4
+            a.btn.btn-lg.btn-primary.btn-google.btn-block.google(href='#') Google
+        .login-or
+          hr.hr-or
           |
-          input#form-username.form-username.form-control(type='text', name='username', placeholder='Username...', autocomplete='off')
-        .form-group
-          label(for='form-password') Password
+          span.span-or or
+        form.login-form(role='form', action='/login', method='post')
+          .form-group
+            label(for='form-username') Username
+            |
+            input#form-username.form-username.form-control(type='text', name='username', placeholder='Username...', autocomplete='off')
+          .form-group
+            a.pull-right(href='#') Forgot password?
+            |
+            label(for='form-password') Password
+            |
+            input#form-password.form-password.form-control(type='password', name='password', placeholder='Password...', autocomplete='off')
+            label.remember-me
+              input(type='checkbox')
+              |  Remember me
           |
-          input#form-password.form-password.form-control(type='password', name='password', placeholder='Password...', autocomplete='off')
-        |
-        button.btn.btn-primary(type='submit') Log in!
+          button.btn.btn.btn-primary(type='submit')  Log In

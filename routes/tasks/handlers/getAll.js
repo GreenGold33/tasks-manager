@@ -3,6 +3,7 @@ const organizeTasks = require('./_organizeTasks')
 
 module.exports = (req,res) => {
 
+  debugger;
   const { user } = req
 
   Task.find()

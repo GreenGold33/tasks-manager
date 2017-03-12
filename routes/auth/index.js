@@ -4,6 +4,10 @@ const router = express.Router();
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
+const TwitterStrategy = require('passport-twitter').Strategy;
+const TwitterConfig = require('./strategies/twitter').twitterStrategyConfig
+const TwitterHandler = require('./strategies/twitter').twitterHandleAuth
+
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 
@@ -28,14 +32,45 @@ router.use(passport.initialize());
 router.use(passport.session());
 
 passport.use( new LocalStrategy( Account.authenticate() ) );
-passport.serializeUser( Account.serializeUser() )
-passport.deserializeUser( Account.deserializeUser() )
+passport.use( new TwitterStrategy( TwitterConfig, TwitterHandler ) )
+
+// passport.serializeUser( Account.serializeUser() )
+// passport.deserializeUser( Account.deserializeUser() )
+
+passport.serializeUser(function(user, done) {
+  debugger;
+  if (user.$isMongooseModelPrototype) {
+    Account.serializeUser()(user, done)
+  }
+
+  // placeholder for custom user serialization
+  // null is for errors
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  debugger;
+  if (user.$isMongooseModelPrototype) {
+    Account.deserializeUser()(user, done)
+  }
+
+  // placeholder for custom user deserialization.
+  // maybe you are going to get the user from mongo by id?
+  // null is for errors
+  done(null, user);
+});
+
+router.get('/auth/twitter', passport.authenticate('twitter') );
+router.get('/auth/twitter/callback',
+  passport.authenticate('twitter', { failureRedirect: '/login' }),
+  afterLogin
+);
 
 router.get('/', (req, res) => res.redirect('/tasks') )
 router.get('/register', showRegister);
 router.post('/register', register);
 router.get('/login', showLogin);
-router.post('/login', passport.authenticate('local'), afterLogin);
+router.post('/login',passport.authenticate('local'), afterLogin);
 router.get('/logout', doLogout);
 
 module.exports = router;
