@@ -5,14 +5,16 @@ const getAll = require('./handlers/getAll')
 const addTask = require('./handlers/addTask')
 const updateTasks = require('./handlers/updateTasks')
 
-router.get('/', isLoggedIn, getAll)
+const logReq = require('../_middleware/logReq')
+
+router.get('/', logReq.bind({}, 'preShowAllTasks'), isLoggedIn, getAll)
 router.post('/', addTask)
 router.put('/', updateTasks)
 
 module.exports = router
 
 function isLoggedIn(req, res, next) {
-    debugger;
+    console.log('is Logged in?');
     if (req.isAuthenticated()) return next();
     res.redirect('/login');
 }

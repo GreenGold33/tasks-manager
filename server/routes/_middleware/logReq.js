@@ -1,9 +1,14 @@
 const chalk = require('chalk');
+const moment = require('moment')
 
-function logReq( req, res, next ) {
+function logReq( msg, req, res, next ) {
 
     const { query, params, session, user, body } = req
 
+    console.log("\n\n\n");
+    console.log("--".repeat(40));
+    console.log(msg);
+    console.log( moment().format('MMMM Do YYYY, h:mm:ss a') );
     console.log("--".repeat(40));
 
     console.log( chalk.white.bgBlue(`REQ.QUERY`) );

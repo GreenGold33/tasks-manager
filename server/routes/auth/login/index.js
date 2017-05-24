@@ -9,7 +9,7 @@ const afterLogin = require('./handlers/afterLogin')
 
 const logReq = require('../../_middleware/logReq')
 
-router.get('/login', showLogin);
-router.post('/login', passport.authenticate('local'), afterLogin);
+router.get('/login', logReq.bind({}, 'preShowLogin'), showLogin);
+router.post('/login', logReq.bind({}, 'preLogin'), passport.authenticate('local'), logReq.bind({}, 'Logged - preAfterLogin'), afterLogin);
 
 module.exports = router;
