@@ -1,0 +1,26 @@
+header.navbar
+  .container-fluid
+    .navbar-header
+      h1
+        span.glyphicon.glyphicon-blackboard
+        |  SkyTrelio
+        small , a Trello clone
+      button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      |
+    ul.nav.navbar-nav.navbar-right
+      if (typeof(user) == 'undefined')
+        li(class= path=='/login' ? 'active' : undefined)
+          a(href='/login')
+            | Login
+            span.sr-only (current)
+        li(class= path=='/register'? 'active' : undefined)
+          a(href='/register') Register
+      else
+        li
+          if (user)
+            h3 You are logged in as #{ user.username }
+          a(href="/logout") Log Out

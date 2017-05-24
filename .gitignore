@@ -1,5 +1,6 @@
 node_modules
 .notes
 .env
-bower_components
 npm-debug.log
+sessions
+server/data
