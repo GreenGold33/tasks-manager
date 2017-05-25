@@ -15,12 +15,17 @@ const handlerAuth = (accessToken, refreshToken, profile, done) => {
   Account.findOne({ oauthID })
     .then(user => {
       if (user !== null) {
+        const msg = 'User found!'
+        require('debug')('TwitterStrategy:handlerAuth')(msg)
+        require('debug')('TwitterStrategy:handlerAuth')(user)
         done(null, user)
       } else {
         user = new Account({ username, oauthID, name, created: Date.now() })
         return user.save()
           .then(() => {
-            console.log('New User detected so => saved to DB...')
+            const msg = 'No user found so a new one was created...'
+            require('debug')('TwitterStrategy:handlerAuth')(msg)
+            require('debug')('TwitterStrategy:handlerAuth')(user)
             done(null, user)
           })
       }
