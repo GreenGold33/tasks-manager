@@ -1,3 +1,10 @@
+.deactivated {
+  cursor: default;
+  background: #CCC !important;
+  color: #AAA !important;
+  border-color: #AAA !important;
+}
+
 html, body {
   background-color: #E6EFF7;
   min-height: 100%;

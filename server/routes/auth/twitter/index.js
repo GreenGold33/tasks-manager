@@ -3,12 +3,12 @@ const router = express.Router()
 
 const passport = require(__base + '/config/passport')
 
-const showLogin = require('./handlers/showLogin')
-
 const successRedirect = '/tasks'
 const failureRedirect = '/login'
 
-router.get('/login', showLogin)
-router.post('/login', passport.authenticate('local', { successRedirect, failureRedirect }))
+router.get('/twitter', passport.authenticate('twitter'))
+router.get('/twitter/callback',
+  passport.authenticate('twitter', { successRedirect, failureRedirect })
+)
 
 module.exports = router

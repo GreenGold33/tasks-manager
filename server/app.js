@@ -9,16 +9,29 @@ const routerAuth = require('./routes/auth')
 
 const app = express()
 
-app.locals.moment = require('moment');
+/* DEBUG init */
+app.use((req, res, next) => {
+  require('debug')(`new request to [${req.method}] ${req.path}`)('-'.repeat(40))
+  next()
+})
 
-app.set('view engine','pug')
+app.locals.moment = require('moment')
+
+app.set('view engine', 'pug')
 app.set('views', path.join(__base, '/views'))
 
 app.use(routerConfig)
 
-app.get('/', (req, res) => res.redirect('/tasks') )
+app.get('/', (req, res) => res.redirect('/tasks'))
 
-app.use( routerAuth)
+app.use(routerAuth)
+
+/* DEBUG req.user */
+app.use((req, res, next) => {
+  require('debug')('req.user')(req.user)
+  next()
+})
+
 app.use('/tasks', routerTasks)
 app.use('/task', routerTask)
 

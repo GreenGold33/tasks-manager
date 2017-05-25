@@ -1,6 +1,3 @@
 {
-  "ignore": [
-    "sessions/*",
-    "server/data/*"
-  ]
+  "ignore": [ "sessions/*" ]
 }

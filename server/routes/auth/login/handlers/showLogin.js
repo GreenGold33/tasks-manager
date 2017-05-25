@@ -1,4 +1,6 @@
-module.exports = (req, res) => {
+function showLogin (req, res) {
   const { path } = req
-  res.render('auth/login', { path });
+  res.render('auth/login', { path })
 }
+
+module.exports = showLogin
