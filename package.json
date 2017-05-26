@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "browserify client/src/app.js > public/js/main.js",
+    "build:watch": "watchify client/src/app.js -d -o public/js/main.js -v",
     "prestart": "npm install",
     "postinstall": "node ./node_modules/bower/bin/bower install",
     "dev": "nodemon index",
@@ -30,6 +32,7 @@
     "session-file-store": "^1.0.0"
   },
   "devDependencies": {
+    "browserify": "^14.3.0",
     "dotenv": "^4.0.0",
     "nodemon": "^1.11.0"
   }
