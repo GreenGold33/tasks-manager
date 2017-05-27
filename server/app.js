@@ -11,7 +11,9 @@ const app = express()
 
 /* DEBUG init */
 app.use((req, res, next) => {
-  require('debug')(`new request to [${req.method}] ${req.path}`)('-'.repeat(40))
+  const msg = `new request to [${req.method}] ${req.path}`
+  const lengthMsg = msg.length > 0 ? msg.length : 0
+  require('debug')(msg)('-'.repeat(120 - lengthMsg))
   next()
 })
 
