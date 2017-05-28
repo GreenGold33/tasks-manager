@@ -59,7 +59,7 @@ header .container-fluid ul.navbar-right li {
   display: flex;
 }
 
-header .container-fluid ul.navbar-right li a {
+header .container-fluid ul.navbar-right li > a {
   padding: auto 30px;
   display:flex;
   align-items: center;
@@ -67,7 +67,8 @@ header .container-fluid ul.navbar-right li a {
   color: white;
 }
 
-header .container-fluid ul.navbar-right li a:hover {
+header .container-fluid ul.navbar-right li > a:hover,
+header .container-fluid ul.navbar-right li.open > a {
   color: black;
 }
 
@@ -202,7 +203,7 @@ li.dummy {
   margin-top: 0px !important;
   margin-bottom: 0px !important;
 }
-#login h3 {
+#login h4 {
   text-align: center;
   line-height: 300%;
 }
@@ -219,8 +220,72 @@ li.dummy {
   background: #c32f10;
   border-color: #6b1301;
 }
-#login .btn-twitter {
-  background: #00aced;
-  border-color: #043d52;
+#login .btn-twitter span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+}
+
+.login-navbar {
+  background: #E6EFF7
+}
+
+.login-navbar p.navbar-text {
+  color: #1f496e;
+}
+
+.login-navbar p.navbar-text span {
+  margin-right:20px;
+}
+
+
+.navbar img.logo {
+  height:30px;
+  margin:20px;
+}
+
+#login img.logo {
+  height:60px;
+  margin:20px;
+  display: block;
+  margin: 0 auto;
+}
+
+#login button.login {
+  margin-top: 30px;
+}
+
+.profile-box .dropdown-toggle strong {
+  margin:0 10px;
+}
+
+.navbar-login {
+  width: 305px;
+  padding: 10px;
+  padding-bottom: 0px;
+}
+
+.navbar-login-session {
+  padding: 10px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+
+.navbar-login-session .btn-logout {
+  justify-content: center;
+}
+
+.dropdown.open {
+  color: #FFF
+}
+
+.icon-size {
+  font-size: 87px;
+}
+
+.forgot-password {
+  display: block;
+  text-align: right;
 }
 

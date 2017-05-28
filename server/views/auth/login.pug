@@ -1,37 +1,47 @@
 extends ../layout
 
+block navbar
+  nav.navbar.navbar-default.login-navbar
+    .container-fluid
+      .navbar-header
+        button.collapsed.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-5', aria-expanded='false')
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        //a.navbar-brand(href='#') Brand
+      #bs-example-navbar-collapse-5.collapse.navbar-collapse
+        p.navbar-text.navbar-right
+          span ¿Don't you have an account?
+          a.btn.btn-default(href='#') Create an account
+
 block content
   .container
     .row#login
-      .main.col-md-6.col-md-offset-3
-        h3
-          | Log In, or&nbsp;
-          a(href='#') Create New Account
+      .main.col-md-4.col-md-offset-4
+        img.logo(src='img/logo.png')
+        h4
+          | Log In to&nbsp;
+          span SkyTrelio
+          |  using...
         .row
-          .col-xs-4
+          //.col-xs-4
             a.deactivated.btn.btn-lg.btn-primary.btn-facebook.btn-block(href='#') Facebook
-          .col-xs-4
-            a.btn.btn-lg.btn-primary.btn-twitter.btn-block.google(href='/auth/twitter')
-              | Twitter Login
-          .col-xs-4
+          a.btn.btn-block.btn-social.btn-twitter(href="/auth/twitter")
+            span.fa.fa-twitter
+            | Sign in with Twitter
+          //.col-xs-4
             a.deactivated.btn.btn-lg.btn-primary.btn-google.btn-block.google(href='#') Google
         .login-or
           hr.hr-or
-          |
-          span.span-or or
-        form.login-form(role='form', action='/login', method='post')
+        h4 or use your email
+        form.row.login-form(role='form', action='/login', method='post')
           .form-group
-            label(for='form-username') Username
-            |
-            input#form-username.form-username.form-control(type='text', name='username', placeholder='Username...', autocomplete='off', tabindex=1)
+            input#form-username.input-lg.form-username.form-control(type='text', name='username', placeholder='Username...', autocomplete='off', tabindex=1)
           .form-group
-            a.pull-right(href='#') Forgot password?
-            |
-            label(for='form-password') Password
-            |
-            input#form-password.form-password.form-control(type='password', name='password', placeholder='Password...', autocomplete='off', tabindex=2)
-            label.remember-me
+            input#form-password.input-lg.form-password.form-control(type='password', name='password', placeholder='Password...', autocomplete='off', tabindex=2)
+            //label.remember-me
               input(type='checkbox')
               |  Remember me
-          |
-          button.btn.btn.btn-primary(type='submit', tabindex=3)  Log In
+          a.forgot-password(href='#') I forgot my password
+          button.login.btn.btn-block.btn-primary(type='submit', tabindex=3) Log In to SkyTrelio
