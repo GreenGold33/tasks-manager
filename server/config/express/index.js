@@ -2,6 +2,9 @@ const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
 
+const connectFlash = require('connect-flash')
+const expressMessages = require('express-messages')
+
 const session = require('express-session')
 const FileStore = require('session-file-store')(session)
 
@@ -19,6 +22,13 @@ router.use(bodyParser.json())
 /* DEBUG req.body */
 router.use((req, res, next) => {
   require('debug')('req.body')(req.body)
+  next()
+})
+
+// Flash Messages
+router.use(connectFlash())
+router.use((req, res, next) => {
+  res.locals.messages = expressMessages(req, res)
   next()
 })
 

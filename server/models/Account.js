@@ -2,6 +2,9 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const passportLocalMongoose = require('passport-local-mongoose')
 
+const usernameField = 'email'
+const options = { usernameField }
+
 const Account = new Schema({
   oauthID: Number,
   name: String,
@@ -11,6 +14,6 @@ const Account = new Schema({
   }
 })
 
-Account.plugin(passportLocalMongoose)
+Account.plugin(passportLocalMongoose, options)
 
 module.exports = mongoose.model('Account', Account)

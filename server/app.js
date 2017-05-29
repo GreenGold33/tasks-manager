@@ -9,6 +9,8 @@ const routerAuth = require('./routes/auth')
 
 const app = express()
 
+app.use(require('errorhandler')())
+
 /* DEBUG init */
 app.use((req, res, next) => {
   const msg = `new request to [${req.method}] ${req.path}`

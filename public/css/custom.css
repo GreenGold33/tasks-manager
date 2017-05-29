@@ -203,7 +203,7 @@ li.dummy {
   margin-top: 0px !important;
   margin-bottom: 0px !important;
 }
-#login h4 {
+#login h4, #register h4 {
   text-align: center;
   line-height: 300%;
 }
@@ -245,7 +245,7 @@ li.dummy {
   margin:20px;
 }
 
-#login img.logo {
+#login img.logo, #register img.logo {
   height:60px;
   margin:20px;
   display: block;
@@ -287,5 +287,9 @@ li.dummy {
 .forgot-password {
   display: block;
   text-align: right;
+}
+
+#login h4 span, #register h4 span {
+  margin:0 5px;
 }
 

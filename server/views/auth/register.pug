@@ -1,26 +1,32 @@
 extends ../layout
 
-block content
+block navbar
+  nav.navbar.navbar-default.login-navbar
+    .container-fluid
+      .navbar-header
+        button.collapsed.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-5', aria-expanded='false')
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        //a.navbar-brand(href='#') Brand
+      #bs-example-navbar-collapse-5.collapse.navbar-collapse
+        p.navbar-text.navbar-right
+          span ¿Do you already have an account?
+          a.btn.btn-default(href='/login') Log in here
 
-  .form-box.col-md-6.col-md-offset-3
-    .form-top
-      .form-top-left
-        h2 Register
-        p Fill in the form below to get instant access:
-      .form-top-right
-        i.fa.fa-pencil
-    .form-bottom
-      form.registration-form(role='form', action='/register', method='post')
-        .form-group
-          label(for='form-first-name') Username
-          |
-          input#form-first-name.form-first-name.form-control(type='text', name='username', placeholder='First name...')
-        .form-group
-          label(for='form-last-name') Password
-          |
-          input#form-last-name.form-last-name.form-control(type='text', name='password', placeholder='Last name...')
-        .form-group
-          label(for='form-email') Email
-          |
-          input#form-email.form-email.form-control(type='text', name='email', placeholder='Email...')
-        button.btn.btn-primary(type='submit') Sign me up!
+block content
+  .container
+    .row#register
+      .main.col-md-4.col-md-offset-4
+        img.logo(src='img/logo.png')
+        h4
+          | Create your
+          span SkyTrelio
+          |  account
+        form.row.registration-form(role='form', action='/register', method='post')
+          .form-group
+            input#form-username.input-lg.form-username.form-control(type='email', name='email', placeholder='Email...')
+          .form-group
+            input#form-last-name.input-lg.form-last-name.form-control(type='password', name='password', placeholder='Password...')
+          button.login.btn.btn-block.btn-success(type='submit', tabindex=3) Create my SkyTrelio Account

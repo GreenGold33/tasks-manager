@@ -1,11 +1,11 @@
 const passport = require('passport')
 
-const LocalStrategy = require('passport-local').Strategy
+const localStrategy = require('./strategies/local')
 const twitterStrategy = require('./strategies/twitter')
 
 const Account = require(__base + 'models/Account')
 
-passport.use(new LocalStrategy(Account.authenticate()))
+passport.use(localStrategy)
 passport.use(twitterStrategy)
 
 passport.serializeUser(function (user, done) {

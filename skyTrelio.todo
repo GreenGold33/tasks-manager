@@ -1,0 +1,21 @@
+TODO
+
+ ✔ Markup register Page @done (17-05-29 13:04)
+ ☐ Register w/ Email
+ ☐ Get Avatar automatically from email when register
+ ☐ Send Confirmation register
+ ☐ Forgot my password
+ ☐ Markup Profile Box
+ ☐ do FindOrCreate method for Account model
+ ☐ Edit Tasks easier (clickin title or desc)
+ ☐ Remove task icon only on hover
+ ☐ Badge number of tasks
+ ☐ SASS css
+ ☐ Fix Logout (2 times to work)
+
+
+
+
+
+
+
