@@ -5,12 +5,11 @@ function register (req, res, next) {
   const account = new Account({ email })
 
   Account.register(account, password, err => {
-    if (err) {
-      console.log('error while user register!', err)
-      return next(err)
-    }
+    if (err) return next(err)
 
-    console.log('user registered!')
+    const authenticationURL = `/verify?authToken=${account.authToken}`
+    console.log(authenticationURL)
+
     res.redirect('/')
   })
 }

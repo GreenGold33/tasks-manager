@@ -9,7 +9,8 @@ const options = { consumerKey, consumerSecret, callbackURL }
 
 const handlerAuth = (accessToken, refreshToken, profile, done) => {
   const { id: oauthID, name, username } = profile
-
+  console.log(profile)
+  // TODO: Add Logic to ask for an email
   Account.findOne({ oauthID })
     .then(user => {
       if (user !== null) done(null, user)

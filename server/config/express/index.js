@@ -4,9 +4,7 @@ const bodyParser = require('body-parser')
 
 const connectFlash = require('connect-flash')
 const expressMessages = require('express-messages')
-
 const session = require('express-session')
-const FileStore = require('session-file-store')(session)
 
 const passport = require(__base + 'config/passport')
 
@@ -37,8 +35,7 @@ router.use(session({
   name: 'tasksManager-session-cookieId',
   secret: 'supersecretworddonottelltoanyone',
   saveUninitialized: true,
-  resave: true,
-  store: new FileStore()
+  resave: true
 }))
 
 // use passport

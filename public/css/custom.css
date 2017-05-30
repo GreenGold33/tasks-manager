@@ -216,11 +216,11 @@ li.dummy {
   background: #3b5998;
   border-color: #172d5e;
 }
-#login .btn-google {
-  background: #c32f10;
-  border-color: #6b1301;
-}
-#login .btn-twitter span {
+// #login .btn-google {
+//   background: #c32f10;
+//   border-color: #6b1301;
+// }
+#login .btn-twitter span, #login .btn-google span {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -291,5 +291,9 @@ li.dummy {
 
 #login h4 span, #register h4 span {
   margin:0 5px;
+}
+
+.login-form input {
+  margin-bottom: 10px;
 }
 

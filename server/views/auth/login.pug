@@ -9,40 +9,39 @@ block navbar
           span.icon-bar
           span.icon-bar
           span.icon-bar
-        //a.navbar-brand(href='#') Brand
       #bs-example-navbar-collapse-5.collapse.navbar-collapse
         p.navbar-text.navbar-right
-          span ¿Don't you have an account?
+          span Don't you have an account?
           a.btn.btn-default(href='/register') Create an account
 
 block content
   .container
     .row#login
       .main.col-md-4.col-md-offset-4
-        h2= message
         img.logo(src='img/logo.png')
         h4
           | Log In to&nbsp;
           span SkyTrelio
           |  using...
         .row
-          //.col-xs-4
-            a.deactivated.btn.btn-lg.btn-primary.btn-facebook.btn-block(href='#') Facebook
-          a.btn.btn-block.btn-social.btn-twitter(href="/auth/twitter")
+          //a.btn.btn-block.btn-social.btn-twitter(href="/auth/twitter")
             span.fa.fa-twitter
             | Sign in with Twitter
-          //.col-xs-4
-            a.deactivated.btn.btn-lg.btn-primary.btn-google.btn-block.google(href='#') Google
+          if (message && message.type == 'google-auth')
+            .alert.alert-danger
+              p!= message.text
+          a.btn.btn-block.btn-lg.btn-social.btn-google(href="/auth/google")
+            span.fa.fa-google
+            | Sign in with Google
         .login-or
           hr.hr-or
         h4 or use your SkyTrelio account
         form.row.login-form(role='form', action='/login', method='post')
-          .form-group
-            input#form-username.input-lg.form-username.form-control(type='email', name='email', placeholder='Email...', autocomplete='off', tabindex=1)
-          .form-group
-            input#form-password.input-lg.form-password.form-control(type='password', name='password', placeholder='Password...', autocomplete='off', tabindex=2)
-            //label.remember-me
-              input(type='checkbox')
-              |  Remember me
+          .form-group(class= (message && message.type == 'local-auth') ? 'has-error' : '')
+            if (message)
+              .alert.alert-danger
+                p!= message
+            input.input-lg.form-control(type='email', name='email', placeholder='Email...', autocomplete='off', tabindex=1)
+            input.input-lg.form-control(type='password', name='password', placeholder='Password...', autocomplete='off', tabindex=2)
           a.forgot-password(href='#') I forgot my password
-          button.login.btn.btn-block.btn-success(type='submit', tabindex=3) Log In to SkyTrelio
+          button.login.btn.btn-lg.btn-block.btn-success(type='submit', tabindex=3) Log In to SkyTrelio

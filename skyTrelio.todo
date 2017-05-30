@@ -1,9 +1,8 @@
 TODO
 
- ✔ Markup register Page @done (17-05-29 13:04)
- ☐ Register w/ Email
- ☐ Get Avatar automatically from email when register
+ ☐ Fix Register new accounts
  ☐ Send Confirmation register
+ ☐ Get Avatar automatically from email when register
  ☐ Forgot my password
  ☐ Markup Profile Box
  ☐ do FindOrCreate method for Account model
@@ -11,7 +10,7 @@ TODO
  ☐ Remove task icon only on hover
  ☐ Badge number of tasks
  ☐ SASS css
- ☐ Fix Logout (2 times to work)
+ ☐ Add Logic to ask for an email on Twitter Login OAuth
 
 
 
@@ -19,3 +18,13 @@ TODO
 
 
 
+
+
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+Archive:
+ ✔ Fix Logout (2 times to work) @done (17-05-30 14:01)
+ ✔ Fix Login & Logout (first time) @done (17-05-30 14:01)
+ ✔ Login w/ Google @done (17-05-30 13:05)
+ ✔ Add flash message when login fails @done (17-05-30 09:54)
+ ✔ Register w/ Email @done (17-05-29 22:27)
+ ✔ Markup register Page @done (17-05-29 13:04)
