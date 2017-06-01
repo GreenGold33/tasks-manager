@@ -1,9 +1,10 @@
 function showLogin (req, res) {
   const { path } = req
 
-  const message = req.flash('error')[0]
+  const messageLocalAuth = req.flash('error')[0]
+  const messageGoogleAuth = req.flash('google-auth')[0]
 
-  res.render('auth/login', { path, message })
+  res.render('auth/login', { path, messageLocalAuth, messageGoogleAuth })
 }
 
 module.exports = showLogin

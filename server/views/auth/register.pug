@@ -2,18 +2,6 @@ extends ../layout
 
 block navbar
   nav.navbar.navbar-default.login-navbar
-    .container-fluid
-      .navbar-header
-        button.collapsed.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-5', aria-expanded='false')
-          span.sr-only Toggle navigation
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-        //a.navbar-brand(href='#') Brand
-      #bs-example-navbar-collapse-5.collapse.navbar-collapse
-        p.navbar-text.navbar-right
-          span Do you already have an account?
-          a.btn.btn-default(href='/login') Log in here
 
 block content
   .container
@@ -24,9 +12,21 @@ block content
           | Create your
           span SkyTrelio
           |  account
+        .alert.alert-danger.hidden.error-register
+          p
         form.row.registration-form(role='form', action='/register', method='post')
           .form-group
-            input#form-username.input-lg.form-username.form-control(type='email', name='email', placeholder='Email...')
+            .input-group
+              span.input-group-addon
+                i.glyphicon.glyphicon-envelope
+              input#form-username.input-lg.form-username.form-control(type='email', name='email', placeholder='Email...')
           .form-group
-            input#form-last-name.input-lg.form-last-name.form-control(type='password', name='password', placeholder='Password...')
-          button.login.btn.btn-lg.btn-block.btn-success(type='submit', tabindex=3) Create my SkyTrelio Account
+            .input-group
+              span.input-group-addon
+                i.glyphicon.glyphicon-lock
+              input#form-last-name.input-lg.form-last-name.form-control(type='password', name='password', placeholder='Password...')
+          button.login.btn.btn-lg.btn-block.btn-success.ladda-button(type='submit', data-style='expand-left', tabindex=3)
+            span.ladda-label Create my SkyTrelio Account
+        p.navbar-text.navbar-right
+          span Do you already have an account?&nbsp;
+          a(href='/login') Log in here

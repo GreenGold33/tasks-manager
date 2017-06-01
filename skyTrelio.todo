@@ -1,8 +1,8 @@
 TODO
 
- ☐ Fix Register new accounts
- ☐ Send Confirmation register
+ ☐ Save on Enter new Task
  ☐ Get Avatar automatically from email when register
+ ☐ Store Sessions Info w/ Redis
  ☐ Forgot my password
  ☐ Markup Profile Box
  ☐ do FindOrCreate method for Account model
@@ -10,7 +10,6 @@ TODO
  ☐ Remove task icon only on hover
  ☐ Badge number of tasks
  ☐ SASS css
- ☐ Add Logic to ask for an email on Twitter Login OAuth
 
 
 
@@ -22,6 +21,9 @@ TODO
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Detect if User is Social Media (Google) and feedback to user @done (17-05-31 20:32)
+ ✔ Send Confirmation register @done (17-05-31 10:19)
+ ✔ Fix Register new accounts @done (17-05-31 10:19)
  ✔ Fix Logout (2 times to work) @done (17-05-30 14:01)
  ✔ Fix Login & Logout (first time) @done (17-05-30 14:01)
  ✔ Login w/ Google @done (17-05-30 13:05)

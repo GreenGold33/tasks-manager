@@ -10,12 +10,12 @@ const options = { clientID, clientSecret, callbackURL, passReqToCallback }
 
 const handlerAuth = (req, accessToken, refreshToken, profile, done) => {
   const { id: oauthID, displayName: name, email } = profile
-
+  const isAuthenticated = true
   Account.findOne({ oauthID })
     .then(user => {
       if (user !== null) done(null, user)
       else {
-        user = new Account({ email, oauthID, name, created: Date.now() })
+        user = new Account({ email, oauthID, name, isAuthenticated, created: Date.now() })
         return user.save()
           .then(() => done(null, user))
           .catch(err => {

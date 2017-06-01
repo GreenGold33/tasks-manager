@@ -293,7 +293,11 @@ li.dummy {
   margin:0 5px;
 }
 
-.login-form input {
+.login-form .input-group {
   margin-bottom: 10px;
+}
+
+#register .error-register {
+  margin: 20px -13px;
 }
 

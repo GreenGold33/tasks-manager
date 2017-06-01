@@ -27,9 +27,9 @@ block content
           //a.btn.btn-block.btn-social.btn-twitter(href="/auth/twitter")
             span.fa.fa-twitter
             | Sign in with Twitter
-          if (message && message.type == 'google-auth')
+          if (messageGoogleAuth)
             .alert.alert-danger
-              p!= message.text
+              p!= messageGoogleAuth
           a.btn.btn-block.btn-lg.btn-social.btn-google(href="/auth/google")
             span.fa.fa-google
             | Sign in with Google
@@ -37,11 +37,17 @@ block content
           hr.hr-or
         h4 or use your SkyTrelio account
         form.row.login-form(role='form', action='/login', method='post')
-          .form-group(class= (message && message.type == 'local-auth') ? 'has-error' : '')
-            if (message)
+          .form-group(class= (messageLocalAuth) ? 'has-error' : '')
+            if (messageLocalAuth)
               .alert.alert-danger
-                p!= message
-            input.input-lg.form-control(type='email', name='email', placeholder='Email...', autocomplete='off', tabindex=1)
-            input.input-lg.form-control(type='password', name='password', placeholder='Password...', autocomplete='off', tabindex=2)
+                p!= messageLocalAuth
+            .input-group
+              span.input-group-addon
+                i.glyphicon.glyphicon-envelope
+              input.input-lg.form-control(type='email', name='email', placeholder='Email...', autocomplete='off', tabindex=1)
+            .input-group
+              span.input-group-addon
+                i.glyphicon.glyphicon-lock
+              input.input-lg.form-control(type='password', name='password', placeholder='Password...', autocomplete='off', tabindex=2)
           a.forgot-password(href='#') I forgot my password
           button.login.btn.btn-lg.btn-block.btn-success(type='submit', tabindex=3) Log In to SkyTrelio
